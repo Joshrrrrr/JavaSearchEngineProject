@@ -1,3 +1,7 @@
+/*
+ Generic FileProcessor Class I made in earlier weeks
+ */
+
 package com.test.project;
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,26 +18,21 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class FileProcessor {
-	String filename;
-	File fileExample;
-	FileProcessor(String filename){
-		setFilename(filename);
-		fileExample = new File(filename);
-	}
-	public void writeToFile(String writethisline){
+	
+	/*public void writeToFile(String writethisline){
 		try {
-			PrintWriter myWriter = new PrintWriter(fileExample);
+			PrintWriter myWriter = new PrintWriter(getFilename());
 			myWriter.println(writethisline);
 			myWriter.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	public String readFile(){
+	}*/
+	public String readFile(File filename){
 		FileReader reader=null;
 		try {
-			reader = new FileReader(fileExample);
+			reader = new FileReader(filename);	//Uses FIleReader java class to read contents of file to string
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -46,20 +45,13 @@ public class FileProcessor {
 			//System.out.println(reader.ready());
 			int i;
 		    while ((i=reader.read()) != -1)
-		      strLine+=(char)i;
+		      strLine+=(char)i; //write to string while contents of file remaining
 			reader.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return strLine;
+        return strLine; //returns string to Search java calls
     }
 	
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
 }
